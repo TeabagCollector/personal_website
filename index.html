@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.
+
+0">
+    <title>My Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+
+href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap"
+
+rel="stylesheet">
+    <style>
+        /* === 全局变量与重置 === */
+        :root {
+            --bg-color: #FFFFFF; --text-primary: #111111;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --border-color:
+
+#EAEAEA;
+            --hover-bg: #FAFAFA;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            --spacing-unit: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+
+box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing:
+
+antialiased;
+        }
+
+        /* === 布局容器 === */
+        .container {
+            max-width: 720px; /* 较窄的容器，营造阅读感 */ margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* === 导航 === */
+        nav {
+            padding: 40px
+
+0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        nav.scrolled { border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-content {
+            display: flex;
+
+justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif); font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-primary);
+
+}
+
+        /* === Hero 区域 === */
+        .hero {
+            padding: 120px 0 80px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem; /*
+
+大标题 */
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--text-primary); letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+
+max-width: 540px;
+            font-weight: 300;
+            margin-bottom: 48px;
+            line-height: 1.6; }
+
+        .hero a {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: var(--text-secondary); text-decoration: none;
+            border-bottom: 1px solid var(--text-tertiary);
+            transition: border-color
+
+0.3s ease;
+        }
+
+        .hero a:hover {
+            border-bottom-color: var(--text-primary);
+        }
+
+        /* === 项目列表区域 === */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2rem; font-weight: 600;
+            margin-bottom: 48px;
+            margin-top: 96px;
+            position: relative;
+
+}
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -16px;
+            width: 40px;
+            height: 1px;
+            background-color: var(--text-primary); }
+
+        .project-item {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border-color);
+
+display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.3s ease; cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        } /* 左侧指示线动画 */
+        .project-item::before {
+            content: '';
+            position: absolute;
+
+left: -24px;
+            top: 32px;
+            height: 1px;
+            width: 0;
+            background-color: var(--text-primary); transition: width 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateX(8px);
+
+/* 整体微右移 */
+        }
+
+        .project-item:hover::before {
+            width: 16px; /* 指示线展开 */
+        }
+
+        .project-item:last-child { border-bottom: none;
+        }
+
+        .project-header {
+            display: flex;
+            align-items:
+
+baseline;
+            gap: 16px;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight:
+
+500;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            letter-spacing: -0.01em; }
+
+        .project-link-icon {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+
+opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover . project-link-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-desc {
+
+font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6; }
+
+        .project-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.875rem; color: var(--text-tertiary);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* === Footer
+
+=== */
+        footer {
+            margin-top: 120px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color); text-align: center;
+        }
+
+        footer p {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+
+}
+
+        /* === 动画 === */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === 响应式 === */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .project-item {
+
+padding: 24px 0;
+            }
+            .project-item::before {
+                display: none; /* 手机上隐藏左侧线条 */ }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 导航 -->
+        <nav id="navbar">
+
+<div class="nav-content">
+                <a href="#" class="logo">PanZiRong.</a>
+            <!-- 可选：可以在这里加一个 Github 链接 -->
+
+<a href="https://github.com/PanZiRong" target="_blank" style="text-decoration: none; color: #666; font-size: 0.9rem; font-weight: 500;">GitHub</a>
+            </div>
+        </nav>
+
+        <!-- Hero 区域 -->
+        <header class="hero">
+
+<h1>Designing with Clarity.</h1>
+            <p>我是 PanZiRong，一名关注代码质量与用户体验的工程师。我构建稳健的后端系统，并探索数据可视化的艺术。</p> <a href="#projects">查看我的作品 ↓</a>
+        </header>
+
+        <!-- 项目列表区域 -->
+        <main id="projects">
+            <h2
+
+class="section-title">Selected Work</h2>
+
+            <!-- 项目 1 -->
+            <a href="https://github.com/PanZiRong/project-1" target="_blank" class="project-item">
+                <div class="project-header">
+                    <span class="project-title">Rough
+
+Volatility Estimator</span>
+                    <span class="project-link-icon">→</span>
+                </div> <div class="project-desc">基于 Python 的金融波动率分析工具，实现了高频数据处理与微观结构噪声清洗算法。</div>
+                <div class="project-meta"> <span>Python</span>
+                    <span>Quantitative Finance</span>
+                </div>
+            </a>
+
+<!-- 项目 2 -->
+            <a href="https://github.com/PanZiRong/project-2" target="_blank" class="project-item"> <div class="project-header">
+                    <span class="project-title">Data Fetcher Engine</span>
+
+<span class="project-link-icon">→</span>
+                </div>
+                <div class="project-desc">一个高可用的数据获取框架，支持多源数据清洗与统一接口，提升了数据管道的稳定性。</div>
+
+<div class="project-meta">
+                    <span>Pandas</span>
+                    <span>ETL Pipeline</span> </div>
+            </a>
+
+            <!-- 项目 3 -->
+            <a href="https://github.com/PanZiRong/project-3"
+
+target="_blank" class="project-item">
+                <div class="project-header">
+                    <span class="project-title">Hurst Algorithm Visualization</span>
+                    <span class="project-link-icon">→</span>
+                </div>
+
+<div class="project-desc">针对金融时间序列特征的自相似性进行可视化分析，辅助模型参数选择与验证。</div>
+                <div class="project-meta"> <span>Matplotlib</span>
+                    <span>Algo Trading</span>
+                </div>
+            </a>
+
+        </main>
+
+<!-- Footer -->
+        <footer>
+            <p>© 2024 PanZiRong. Designed with clarity.</p>
+        </footer> </div>
+
+    <script>
+        // 简单的导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar'); if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+
+nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
