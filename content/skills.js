@@ -14,3 +14,9 @@ window.SKILLS_DATA = [
     { category: "技术栈", items: ["Python", "NumPy", "Pandas", "Matplotlib", "SciPy"] },
     { category: "工具", items: ["Jupyter", "Git", "LaTeX"] }
 ];
+
+window.SKILLS_DATA_EN = [
+    { category: "Quant Research", items: ["Rough Volatility", "RFSV Prediction", "Hurst Estimation", "Volatility Modeling"] },
+    { category: "Tech Stack", items: ["Python", "NumPy", "Pandas", "Matplotlib", "SciPy"] },
+    { category: "Tools", items: ["Jupyter", "Git", "LaTeX"] }
+];

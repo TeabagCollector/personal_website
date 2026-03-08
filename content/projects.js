@@ -15,7 +15,7 @@ window.PROJECTS_DATA = [
         title: "Rough Volatility 复刻（Gatheral 2014）",
         description: "完整复现 rough volatility 建模流程：MUZ 高频 tick 方差代理 → Hurst 变差估计 → RFSV 区间积分核预测。支持沪深300与 AEX 荷指对比，验证模型在不同市场的适用性。含变差图、P-ratio 评估及 AR/HAR 基准。",
         meta: ["Python", "MUZ", "Hurst", "RFSV", "Quantitative Finance"],
-        href: "https://github.com/TeabagCollector"
+        href: "https://github.com/TeabagCollector/rough_volatility_construction"
     },
     {
         title: "北京大学经济金融类题库建设平台",
@@ -23,10 +23,19 @@ window.PROJECTS_DATA = [
         meta: ["Typescript", "Vite", "React", "Python"],
         href: "http://222.29.71.12:3000"
     },
-    // {
-    //     title: "Data Fetcher Engine",
-    //     description: "高可用数据获取框架，支持多源清洗与统一接口，提升数据管道稳定性。",
-    //     meta: ["Pandas", "ETL Pipeline"],
-    //     href: "https://github.com/TeabagCollector"
-    // },
+];
+
+window.PROJECTS_DATA_EN = [
+    {
+        title: "Rough Volatility Replication (Gatheral 2014)",
+        description: "Full pipeline: MUZ tick variance proxy → Hurst variogram → RFSV Riemann-sum prediction. CSI 300 vs AEX comparison. Variogram plots, P-ratio evaluation, AR/HAR benchmarks.",
+        meta: ["Python", "MUZ", "Hurst", "RFSV", "Quantitative Finance"],
+        href: "https://github.com/TeabagCollector/rough_volatility_construction"
+    },
+    {
+        title: "Peking University Econ-Finance Question Bank Platform",
+        description: "Lab project: question creation, bank management, forum. LLM-assisted. Builds high-quality econ-finance test sets for LLM evaluation. (Campus network required)",
+        meta: ["Typescript", "Vite", "React", "Python"],
+        href: "http://222.29.71.12:3000"
+    },
 ];

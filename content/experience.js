@@ -17,11 +17,9 @@
  * ]
  */
 window.EXPERIENCE_DATA = [
+    { period: "2026.01 - 至今", title: "某私募基金管理有限公司 量化实习", detail: "策略开发，结合神经网络进行个股特征与关联分析。" },
+];
 
-    {
-        period: "2026.01 - 至今",
-        title: "某私募基金管理有限公司 量化实习",
-        detail: "策略开发，结合神经网络进行个股特征与关联分析。"
-    },
-
+window.EXPERIENCE_DATA_EN = [
+    { period: "2026.01 - present", title: "Quantitative Intern, Asset Management", detail: "Strategy development, neural network for stock features and correlation analysis." },
 ];

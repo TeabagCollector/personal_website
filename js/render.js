@@ -101,10 +101,14 @@
     }
 
     function initPage() {
-        renderEducation("education-list", education);
-        renderProjects("projects-list", projects);
-        renderSkills("skills-list", skills);
-        renderExperience("experience-list", experience);
+        const renderEd = window.renderEducation || renderEducation;
+        const renderProj = window.renderProjects || renderProjects;
+        const renderSk = window.renderSkills || renderSkills;
+        const renderExp = window.renderExperience || renderExperience;
+        renderEd("education-list", education);
+        renderProj("projects-list", projects);
+        renderSk("skills-list", skills);
+        renderExp("experience-list", experience);
     }
 
     function initNavScroll() {

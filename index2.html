@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PanZiRong - Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* === Design Tokens - Dark Financial Terminal === */
+        :root {
+            /* Dark Editorial Palette */
+            --bg-primary: #0D0D0D;
+            --bg-secondary: #161616;
+            --bg-tertiary: #1F1F1F;
+            --bg-elevated: #252525;
+            --text-primary: #F5F5F5;
+            --text-secondary: #A0A0A0;
+            --text-tertiary: #666666;
+            --accent-gold: #D4AF37;
+            --accent-amber: #F5A623;
+            --accent-copper: #CD7F32;
+            --border-color: #2A2A2A;
+            --border-subtle: #1A1A1A;
+            --glow-gold: rgba(212, 175, 55, 0.15);
+            --shadow-deep: rgba(0, 0, 0, 0.5);
+
+            /* Typography */
+            --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+            --font-body: "IBM Plex Mono", "SF Mono", monospace;
+            --font-mono: "IBM Plex Mono", monospace;
+
+            /* Spacing */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 80px;
+            --space-2xl: 120px;
+        }
+
+        /* === Reset & Base === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* === Ambient Background - Grid Pattern === */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.4;
+            z-index: -2;
+        }
+
+        /* === Ambient Glow === */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 50% 30% at 0% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 40% at 100% 100%, rgba(205, 127, 50, 0.04) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* === Container === */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* === Navigation === */
+        nav {
+            padding: var(--space-lg) 0;
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: "//";
+            margin-right: 6px;
+            color: var(--accent-gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::before {
+            opacity: 1;
+        }
+
+        .lang-toggle {
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            color: inherit;
+            letter-spacing: inherit;
+            text-transform: inherit;
+        }
+
+        /* === Hero Section === */
+        .hero {
+            padding: var(--space-2xl) 0 var(--space-xl);
+            padding-left: 36px;  /* Space between golden line and content */
+            position: relative;
+        }
+
+        /* Decorative line */
+        .hero::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--border-color) 100%);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 8vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            animation: fade-up 0.8s ease-out both;
+        }
+
+        .hero-title .line {
+            display: block;
+        }
+
+        .hero-title .line:nth-child(2) {
+            animation-delay: 0.15s;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .hero-intro {
+            max-width: 560px;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            animation: fade-up 0.8s ease-out 0.3s both;
+            line-height: 1.8;
+        }
+
+        .hero-intro .highlight {
+            color: var(--accent-gold);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: fade-up 0.8s ease-out 0.45s both;
+            transition: gap 0.3s ease;
+            padding: 12px 24px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .hero-cta:hover {
+            gap: 16px;
+            background: var(--glow-gold);
+        }
+
+        .hero-cta svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* === Section Styles === */
+        section {
+            padding: var(--space-lg) 0;
+            padding-left: 36px;  /* Align with hero content, away from golden line */
+            position: relative;
+        }
+
+        /* Section number marker */
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            animation: fade-up 0.6s ease-out both;
+        }
+
+        .section-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.1em;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: var(--text-primary);
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color) 0%, transparent 100%);
+        }
+
+        /* === List Items === */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        /* === Card Base === */
+        .card {
+            display: block;
+            padding: var(--space-md);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            animation: fade-up 0.5s ease-out both;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-gold);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 8px 32px var(--shadow-deep), 0 0 20px var(--glow-gold);
+        }
+
+        .card:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* === Education Items === */
+        .education-item { animation-delay: 0.1s; }
+
+        .edu-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .edu-period {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-amber);
+            letter-spacing: 0.05em;
+        }
+
+        .edu-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .edu-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* === Project Items === */
+        .project-item {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-item:nth-child(1) { animation-delay: 0.1s; }
+        .project-item:nth-child(2) { animation-delay: 0.2s; }
+        .project-item:nth-child(3) { animation-delay: 0.3s; }
+
+        .project-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .project-arrow {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--accent-gold);
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover .project-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-copper);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .project-item:hover .project-tag {
+            border-color: var(--accent-copper);
+            background: rgba(205, 127, 50, 0.1);
+        }
+
+        /* === Skills Section - Terminal Style === */
+        .skill-category {
+            margin-bottom: var(--space-md);
+            animation: fade-up 0.5s ease-out both;
+        }
+
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+
+        .skill-category-title {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+            cursor: default;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-gold);
+            color: var(--text-primary);
+            background: var(--glow-gold);
+        }
+
+        /* === Experience Items === */
+        .experience-item { animation-delay: 0.1s; }
+
+        .exp-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .exp-period {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-amber);
+            letter-spacing: 0.05em;
+        }
+
+        .exp-content h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .exp-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* === Placeholder === */
+        .placeholder {
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border: 1px dashed var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            color: var(--text-tertiary);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+
+        /* === Footer === */
+        footer {
+            padding: var(--space-xl) 0;
+            margin-top: var(--space-lg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.05em;
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-amber);
+        }
+
+        /* === Animations === */
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === Responsive === */
+        @media (max-width: 768px) {
+            :root {
+                --space-xl: 80px;
+                --space-2xl: 100px;
+            }
+
+            body::before {
+                background-size: 40px 40px;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .hero::before {
+                display: none;
+            }
+
+            .hero, section {
+                padding-left: 0;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .section-line {
+                width: 60px;
+            }
+
+            .edu-header,
+            .project-header,
+            .exp-header {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        /* === Smooth Scroll === */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-content">
+                <a href="#" class="logo">Zirong Pan</a>
+                <div class="nav-links">
+                    <a class="nav-link" href="https://github.com/TeabagCollector" target="_blank" rel="noopener noreferrer">GITHUB</a>
+                    <a class="nav-link" href="mailto:panzirong@stu.pku.edu.cn">CONTACT</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <header class="hero">
+            <h1 class="hero-title">
+                <span class="line">Designing with Clarity.</span>
+                <span class="line">Working with Passion.</span>
+            </h1>
+            <p class="hero-intro">
+                <span class="highlight">//</span> 我是潘籽荣（Zirong Pan），北京大学金融科技方向本科生。<br>
+                专注于 <span class="highlight">量化金融研究</span>，探索波动率建模与市场微观结构。
+            </p>
+            <a href="#projects" class="hero-cta">
+                Explore
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </header>
+
+        <!-- Education -->
+        <section id="education">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">Education</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="item-list" id="education-list"></div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Selected Work</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="item-list" id="projects-list"></div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Capabilities</h2>
+                <div class="section-line"></div>
+            </div>
+            <div id="skills-list"></div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Experience</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="item-list" id="experience-list"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 <a href="#">PanZiRong</a> // Designed with clarity</p>
+        </footer>
+    </div>
+
+    <!-- Data Scripts -->
+    <script src="content/i18n.js"></script>
+    <script src="content/education.js"></script>
+    <script src="content/projects.js"></script>
+    <script src="content/skills.js"></script>
+    <script src="content/experience.js"></script>
+    <script src="js/render.js"></script>
+
+    <!-- Override Render Functions for Dark Design -->
+    <script>
+        (function() {
+            // Education render - Terminal Card Style
+            window.renderEducation = function(targetId, entries) {
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                if (!entries || entries.length === 0) {
+                    target.innerHTML = '<div class="placeholder">// Loading education data...</div>';
+                    return;
+                }
+                target.innerHTML = entries.map(entry => `
+                    <div class="card education-item">
+                        <div class="edu-header">
+                            <span class="edu-period">${entry.period}</span>
+                        </div>
+                        <div class="edu-content">
+                            <h3>${entry.institution}</h3>
+                            <p>${entry.detail}</p>
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            // Projects render - Terminal Card Style
+            window.renderProjects = function(targetId, entries) {
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                if (!entries || entries.length === 0) {
+                    target.innerHTML = '<div class="placeholder">// Loading projects data...</div>';
+                    return;
+                }
+                target.innerHTML = entries.map(entry => `
+                    <a href="${entry.href || '#'}" target="_blank" rel="noopener noreferrer" class="card project-item">
+                        <div class="project-header">
+                            <span class="project-title">${entry.title}</span>
+                            <span class="project-arrow">→</span>
+                        </div>
+                        <p class="project-desc">${entry.description}</p>
+                        <div class="project-tags">
+                            ${(entry.meta || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                        </div>
+                    </a>
+                `).join('');
+            };
+
+            // Skills render - Terminal Style
+            window.renderSkills = function(targetId, entries) {
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                if (!entries || entries.length === 0) {
+                    target.innerHTML = '<div class="placeholder">// Loading skills data...</div>';
+                    return;
+                }
+                target.innerHTML = entries.map(entry => `
+                    <div class="skill-category">
+                        <div class="skill-category-title">${entry.category}</div>
+                        <div class="skill-tags">
+                            ${Array.isArray(entry.items) ? entry.items.map(item => `<span class="skill-tag">${item}</span>`).join('') : entry.items}
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            // Experience render - Terminal Card Style
+            window.renderExperience = function(targetId, entries) {
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                if (!entries || entries.length === 0) {
+                    target.innerHTML = '<div class="placeholder">// Loading experience data...</div>';
+                    return;
+                }
+                target.innerHTML = entries.map(entry => `
+                    <div class="card experience-item">
+                        <div class="exp-header">
+                            <span class="exp-period">${entry.period || ''}</span>
+                        </div>
+                        <div class="exp-content">
+                            <h3>${entry.title || entry.company}</h3>
+                            <p>${entry.detail || entry.description}</p>
+                        </div>
+                    </div>
+                `).join('');
+            };
+        })();
+    </script>
+    <script src="js/lang-switcher.js"></script>
+</body>
+</html>

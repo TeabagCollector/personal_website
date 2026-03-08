@@ -21,3 +21,8 @@ window.EDUCATION_DATA = [
         detail: "加州大学伯克利分校，交换学习。"
     }
 ];
+
+window.EDUCATION_DATA_EN = [
+    { period: "2023.09 - 2027.07 (planned)", institution: "Peking University", detail: "School of Economics, Finance Dept., FinTech program." },
+    { period: "2025.09 - 2025.12", institution: "UC Berkeley", detail: "Exchange study." }
+];

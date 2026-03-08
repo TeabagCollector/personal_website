@@ -1,0 +1,10 @@
+# Tutorial & Notes (local only)
+tutorial/
+
+# OS files
+.DS_Store
+*.log
+
+# Editor
+.vscode/
+.idea/
