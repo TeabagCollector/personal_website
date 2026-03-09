@@ -18,11 +18,11 @@ window.EDUCATION_DATA = [
     {
         period: "2025.09 - 2025.12",
         institution: "University of California, Berkeley",
-        detail: "加州大学伯克利分校，交换学习。"
+        detail: "加州大学伯克利分校，交换学习。PDE、CS 61B (Data Structures) 均获 A。"
     }
 ];
 
 window.EDUCATION_DATA_EN = [
-    { period: "2023.09 - 2027.07 (planned)", institution: "Peking University", detail: "School of Economics, Finance Dept., FinTech program." },
-    { period: "2025.09 - 2025.12", institution: "UC Berkeley", detail: "Exchange study." }
+    { period: "2023.09 - 2027.07 (planned)", institution: "Peking University", detail: "School of Economics, Finance Dept., FinTech Pilot Class." },
+    { period: "2025.09 - 2025.12", institution: "UC Berkeley", detail: "Exchange study. PDE, CS 61B (Data Structures) — Grade A." }
 ];

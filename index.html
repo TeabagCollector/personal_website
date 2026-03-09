@@ -109,6 +109,10 @@
             opacity: 0.7;
         }
 
+        .logo:active {
+            opacity: 0.9;
+        }
+
         .nav-links {
             display: flex;
             align-items: baseline;
@@ -123,6 +127,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             position: relative;
+            cursor: pointer;
             transition: color 0.3s ease;
         }
 
@@ -143,6 +148,15 @@
 
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        .nav-link:active {
+            opacity: 0.8;
+        }
+
+        .nav-link:focus-visible {
+            outline: 2px solid var(--accent-copper);
+            outline-offset: 2px;
         }
 
         .lang-toggle:hover::after {
@@ -198,6 +212,10 @@
         .contact-dropdown a:last-child,
         .contact-dropdown span:last-child {
             border-bottom: none;
+        }
+
+        .contact-dropdown a {
+            cursor: pointer;
         }
 
         .contact-dropdown a:hover {
@@ -262,12 +280,24 @@
             font-size: 0.9rem;
             color: var(--accent-copper);
             text-decoration: none;
+            cursor: pointer;
             animation: fade-up 0.8s ease-out 0.45s both;
-            transition: gap 0.3s ease;
+            transition: gap 0.3s ease, opacity 0.2s ease, transform 0.2s ease;
         }
 
         .hero-cta:hover {
             gap: 12px;
+            opacity: 0.85;
+        }
+
+        .hero-cta:active {
+            transform: scale(0.98);
+        }
+
+        .hero-cta:focus-visible {
+            outline: 2px solid var(--accent-copper);
+            outline-offset: 4px;
+            border-radius: 2px;
         }
 
         .hero-cta svg {
@@ -319,6 +349,21 @@
             animation: fade-up 0.5s ease-out both;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-copper);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
         }
 
         .education-item:first-child { animation-delay: 0.1s; }
@@ -328,6 +373,10 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 32px var(--shadow-medium);
             background: var(--bg-tertiary);
+        }
+
+        .education-item:hover::before {
+            transform: scaleY(1);
         }
 
         .edu-header {
@@ -369,6 +418,21 @@
             animation: fade-up 0.5s ease-out both;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-copper);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
         }
 
         .project-item:last-child { margin-bottom: 0; }
@@ -377,6 +441,10 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 32px var(--shadow-medium);
             background: var(--bg-tertiary);
+        }
+
+        .project-item:hover::before {
+            transform: scaleY(1);
         }
 
         .project-header {
@@ -400,12 +468,23 @@
             padding: 4px 12px;
             border: 1px solid var(--accent-copper);
             border-radius: 4px;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.25s ease;
         }
 
         .project-link-btn:hover {
             background: var(--accent-copper);
             color: white;
+            transform: scale(1.03);
+        }
+
+        .project-link-btn:active {
+            transform: scale(0.97);
+        }
+
+        .project-link-btn:focus-visible {
+            outline: 2px solid var(--accent-copper);
+            outline-offset: 2px;
         }
 
         .project-desc {
@@ -476,7 +555,11 @@
         .skill-tag:hover {
             background: var(--accent-primary);
             color: white;
-            transform: scale(1.05);
+            transform: scale(1.04);
+        }
+
+        .skill-tag:active {
+            transform: scale(0.98);
         }
 
         /* === Experience Items - Card Style === */
@@ -489,6 +572,21 @@
             animation: fade-up 0.5s ease-out both;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent-copper);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
         }
 
         .experience-item:first-child { animation-delay: 0.1s; }
@@ -498,6 +596,10 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 32px var(--shadow-medium);
             background: var(--bg-tertiary);
+        }
+
+        .experience-item:hover::before {
+            transform: scaleY(1);
         }
 
         .exp-header {
@@ -554,11 +656,16 @@
         footer a {
             color: var(--text-secondary);
             text-decoration: none;
+            cursor: pointer;
             transition: color 0.2s ease;
         }
 
         footer a:hover {
             color: var(--accent-copper);
+        }
+
+        footer a:active {
+            opacity: 0.8;
         }
 
         /* === Animations === */
@@ -637,7 +744,7 @@
                             </a>
                             <a href="tel:13671600586">
                                 <span class="contact-label">电话</span>
-                                <span class="contact-value">136-7160-0586</span>
+                                <span class="contact-value">+86 136-7160-0586</span>
                             </a>
                         </div>
                     </div>
@@ -702,7 +809,7 @@
 
         <!-- Footer -->
         <footer>
-            <p>© 2026 <a href="#">PanZiRong</a> · Designed with clarity</p>
+            <p>© 2026 <a href="#">Zirong Pan</a> · Designed with clarity</p>
         </footer>
     </div>
 

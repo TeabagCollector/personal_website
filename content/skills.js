@@ -10,13 +10,13 @@
  * ]
  */
 window.SKILLS_DATA = [
-    { category: "量化研究", items: ["Rough Volatility", "RFSV 预测", "Hurst 估计", "波动率建模"] },
+    { category: "量化研究", items: ["Neural SDE", "VAE", "Heston", "Rough Volatility", "RFSV 预测", "Hurst 估计", "波动率建模"] },
     { category: "技术栈", items: ["Python", "NumPy", "Pandas", "Matplotlib", "SciPy"] },
     { category: "工具", items: ["Jupyter", "Git", "LaTeX"] }
 ];
 
 window.SKILLS_DATA_EN = [
-    { category: "Quant Research", items: ["Rough Volatility", "RFSV Prediction", "Hurst Estimation", "Volatility Modeling"] },
+    { category: "Quant Research", items: ["Neural SDE", "VAE", "Heston", "Rough Volatility", "RFSV Prediction", "Hurst Estimation", "Volatility Modeling"] },
     { category: "Tech Stack", items: ["Python", "NumPy", "Pandas", "Matplotlib", "SciPy"] },
     { category: "Tools", items: ["Jupyter", "Git", "LaTeX"] }
 ];
